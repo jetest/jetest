@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+    	'application.extensions.nestedset.*',
 	),
 
 	'modules'=>array(
@@ -27,6 +28,7 @@ return array(
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1', '192.168.2.49'),
 		),
+		'cms',
 		
 	),
 
@@ -37,19 +39,25 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		/*
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
+			'showScriptName'=>false,
+		
+			/*
 			'rules'=>array(
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
+			*/
 		),
-		*/
+		
+		/*
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),
+		*/
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
@@ -58,11 +66,14 @@ return array(
 			'username' => 'root',
 			'password' => '12345',
 			'charset' => 'utf8',
+			'tablePrefix'=>'',
 		),
 		
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-            'errorAction'=>'site/error',
+           // 'errorAction'=>'site/error',
+			'class'=>'application.modules.cms.components.CmsHandler',
+		
         ),
 		'log'=>array(
 			'class'=>'CLogRouter',
